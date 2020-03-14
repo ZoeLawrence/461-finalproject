@@ -1,2 +1,2 @@
-# 461-finalproject
-Heather Maedl, Joshua Watrous, and Zoe Lawrence
+# Comparing DoS and DDoS attacks
+by Heather Maedl, Joshua Watrous, and Zoe Lawrence
