@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ "$1" != "" ]; then
+    javac Proxy.java
+    java Proxy $1
+else
+    echo "Usage: ./run <port>"
+fi
