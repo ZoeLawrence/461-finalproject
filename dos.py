@@ -1,4 +1,5 @@
 # simple DOS attack script
+#
 # Opens a bunch of TCP connections to proxy server
 # and sends simple GET request and immediately closes
 
