@@ -5,6 +5,7 @@ import java.io.*;
 public class Proxy {
     private Set<Thread> thread_pool;
     private final int BUF_SIZE = 128;
+    private final int MAX_POOL_SIZE = 250;
 
     public Proxy(int port) {
         // Print Writers will use the right newline character for HTTP requests
@@ -13,12 +14,24 @@ public class Proxy {
         try {
             ServerSocket tcp_socket_client = new ServerSocket(port);
             System.out.println("Proxy listening on " + InetAddress.getLocalHost().toString() + ":" + port);
+
             while (true) {
                 // Generate a new thread per connection
                 Socket connected = tcp_socket_client.accept();
                 Thread thread = new Thread(new ProxyThread(connected));
                 thread_pool.add(thread);
                 thread.start();
+                System.out.println("Pool size: " + thread_pool.size());
+                if (thread_pool.size() >= MAX_POOL_SIZE) {
+                    Iterator<Thread> iter = thread_pool.iterator();
+                    while (iter.hasNext()) {
+                        Thread t = iter.next();
+                        if (!t.isAlive()) {
+                            t.join();
+                            iter.remove();
+                        }
+                    }
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -204,8 +217,6 @@ public class Proxy {
     }
 
     public static void main(String[] args) {
-        //new Proxy(Integer.parseInt(args[0]));
         new Proxy(1234);
-
     }
 }

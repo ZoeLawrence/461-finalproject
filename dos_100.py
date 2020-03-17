@@ -18,5 +18,5 @@ def flood(target_IP, dst_port):
     s.close() 
 
 # commence attack 
-for i in range(1, 50): 
+for i in range(1, 100): 
     flood("localhost", 1234)
