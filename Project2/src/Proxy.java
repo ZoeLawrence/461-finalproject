@@ -5,7 +5,8 @@ import java.io.*;
 public class Proxy {
     private Set<Thread> thread_pool;
     private final int BUF_SIZE = 128;
-    private final int MAX_POOL_SIZE = 250;
+    private final int MAX_POOL_SIZE = 200;
+    private boolean LOAD_MANAGE = false;
 
     public Proxy(int port) {
         // Print Writers will use the right newline character for HTTP requests
@@ -21,8 +22,12 @@ public class Proxy {
                 Thread thread = new Thread(new ProxyThread(connected));
                 thread_pool.add(thread);
                 thread.start();
-                System.out.println("Pool size: " + thread_pool.size());
-                if (thread_pool.size() >= MAX_POOL_SIZE) {
+
+                // When this is active, regularly cleans up thread pool
+                // discarding dead threads. Helps manage load and take stress
+                // off proxy server
+
+                if (LOAD_MANAGE && thread_pool.size() >= MAX_POOL_SIZE) {
                     Iterator<Thread> iter = thread_pool.iterator();
                     while (iter.hasNext()) {
                         Thread t = iter.next();
