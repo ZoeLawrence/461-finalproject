@@ -5,7 +5,7 @@ import java.io.*;
 public class Proxy {
     private Set<Thread> thread_pool;
     private final int BUF_SIZE = 128;
-    private final int MAX_POOL_SIZE = 200;
+    private final int MAX_POOL_SIZE = 50;
     private boolean LOAD_MANAGE = false;
 
     public Proxy(int port) {
