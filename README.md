@@ -1,4 +1,19 @@
-# Comparing DoS and DDoS attacks
+# Measuring Effectiveness of DOS Attack
 by Heather Maedl, Joshua Watrous, and Zoe Lawrence
 
-https://medium.com/@joel.barmettler/denial-of-service-attacks-do-not-always-have-to-flood-the-server-with-requests-to-make-him-shut-c630e59b731e
+### How to Run Code
+<ol>
+  <li> Open a terminal and navigate to top-level folder </li>
+  <li> Run <code>$ javac ./Project2/src/Proxy.java</code></li>
+  <li> Run <code>$ java ./Project2/src/Proxy</code></li>
+  
+    ^ This starts up the Proxy Server
+  
+  <li> Open a new terminal in the same folder</li>
+  <li> Run <code>$ python dos.py</code></li>
+  
+    ^ This begins the endless DOS attack
+    
+  <li> Use <code>CTRL + C</code> to stop either program</li>
+  </ol>
+  
